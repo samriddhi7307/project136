@@ -1,6 +1,6 @@
-from flask import Flask,jsonify,request
+from flask import Flask, json, jsonify,request
 from data import data
-app = Flask(__name__)
+app=Flask(__name__)
 @app.route("/")
 def index():
     return jsonify({
@@ -8,15 +8,14 @@ def index():
         "message":"success"
     }),200
 
-@app.route("/planet")
+@app.route("/stars")
 def planet():
     name=request.args.get("name")
-    planet_data = next(item for item in data if item["name"] ==name)
+    stars_data = next(item for item in data if item["name"] == name)
     return jsonify({
-        "data":planet_data,
+        "data":stars_data,
         "message":"success"
     }),200
 
 if __name__ == "__main__":
     app.run()
-    
